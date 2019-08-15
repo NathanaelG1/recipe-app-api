@@ -13,6 +13,10 @@ RUN mkdir /app
 WORKDIR /app 
 COPY ./app /app
 
+#Add an entry point in the container for Github Actions
+ADD entrypoint.sh /entrypoint.sh 
+ENTRYPOINT ["/entrypoint.sh"]
+
 #Create a user named user, and then start as the user 'user'
 # If you do not specify a user here, you will automatically log in as root 
 RUN adduser -D user
