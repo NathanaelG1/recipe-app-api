@@ -6,16 +6,12 @@ ENV PYTHONUNBUFFERED 1
 
 # Makes a copy of the local requirements.txt and copies to the docker container, then have pip install all dependencies.
 COPY ./requirements.txt /requirements.txt
-RUN pip install -r /requirements.txt
+RUN pip3 install -r /requirements.txt
 
 # Create an app directory and copy it inside the Docker image
 RUN mkdir /app 
 WORKDIR /app 
 COPY ./app /app
-
-#Add an entry point in the container for Github Actions
-ADD entrypoint.sh /entrypoint.sh 
-ENTRYPOINT ["/entrypoint.sh"]
 
 #Create a user named user, and then start as the user 'user'
 # If you do not specify a user here, you will automatically log in as root 
